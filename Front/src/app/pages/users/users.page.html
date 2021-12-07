@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+
+<ion-content>
+
+  <ion-grid>
+
+    <ion-row class="ion-justify-content-center">
+
+      <ion-col size-lg="6" size-md="9" size-sm="12" size="12">
+
+        <div>
+          <ion-fab vertical="top" horizontal="end" (click)="add()" slot="fixed">
+            <ion-fab-button>
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </div>
+
+        <br><br>
+
+        <ion-item-divider>
+          <ion-label>
+            <h1>Usuários</h1>
+          </ion-label>
+        </ion-item-divider>
+
+        <div *ngIf="busy">
+          <app-loading></app-loading>
+        </div>
+
+        <div *ngIf="users">
+
+          <ion-list>
+            <ion-item class="clickable" *ngFor="let user of users" (click)="details(user.id)" detail>
+              <p>
+                <ion-text>
+                  <h5>{{ user.firstName }} {{ user.lastName }}</h5>
+                </ion-text>
+                <ion-text>{{ user.email }}</ion-text><br>
+              </p>
+            </ion-item>
+
+          </ion-list>
+
+        </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

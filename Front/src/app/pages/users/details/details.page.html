@@ -1,0 +1,101 @@
+<app-navbar></app-navbar>
+
+<ion-content>
+  <ion-grid>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-lg="6" size-md="9" size-sm="12" size="12">
+
+        <ion-item-divider>
+          <ion-label>
+            <h1>Editando Usuário</h1>
+          </ion-label>
+
+          <ion-buttons slot="end" *ngIf="user != null">
+            <ion-button (click)="delete()">
+              <ion-icon color="danger" name="trash" size="large"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item-divider>
+
+        <div *ngIf="busy">
+          <app-loading></app-loading>
+        </div>
+
+        <div *ngIf="!busy">
+
+          <form [formGroup]="form">
+
+            <ion-item>
+              <ion-label position="floating">Nome</ion-label>
+              <ion-input type="text" formControlName="firstName">
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Sobrenome</ion-label>
+              <ion-input type="text" formControlName="lastName">
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input type="email" formControlName="email">
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Data de Nascimento</ion-label>
+              <ion-datetime displayFormat="DD/MM/YYYY" formControlName="birthDate" doneText="OK" cancelText="Cancelar">
+              </ion-datetime>
+            </ion-item>
+
+            <ion-radio-group formControlName="schooling">
+              <ion-list-header>
+                <ion-label>Escolaridades</ion-label>
+              </ion-list-header>
+              <ion-row>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Infantil</ion-label>
+                    <ion-radio slot="start" value="1"></ion-radio>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Fundamental</ion-label>
+                    <ion-radio slot="start" value="2"></ion-radio>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Médio</ion-label>
+                    <ion-radio slot="start" value="3"></ion-radio>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Superior</ion-label>
+                    <ion-radio slot="start" value="4"></ion-radio>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-radio-group>
+
+            <br>
+            <ion-button expand="full" size="large" [disabled]="!form.valid" (click)="submit()">Salvar</ion-button>
+            <br>
+            <ion-button expand="full" fill="clear" color="medium" (click)="cancel()">Voltar</ion-button>
+
+          </form>
+
+        </div>
+
+      </ion-col>
+
+    </ion-row>
+
+
+  </ion-grid>
+
+</ion-content>
